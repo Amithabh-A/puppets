@@ -33,8 +33,18 @@ done
 EOT
 chmod +x /usr/local/bin/sudo_watcher.sh
 
+# Determine the correct systemd directory for service files
+if [ -d "/etc/systemd/system" ]; then
+    SYSTEMD_DIR="/etc/systemd/system"
+elif [ -d "/lib/systemd/system" ]; then
+    SYSTEMD_DIR="/lib/systemd/system"
+else
+    echo "Error: Could not determine systemd directory"
+    exit 1
+fi
+
 # Create and enable systemd service
-cat <<EOT | sudo tee /etc/systemd/system/mail_sudo.service
+cat <<EOT | sudo tee $SYSTEMD_DIR/mail_sudo.service
 [Unit]
 Description=Watch for changes to sudo log file
 
@@ -46,6 +56,8 @@ StartLimitBurst=5
 [Install]
 WantedBy=multi-user.target
 EOT
+
+# Reload systemd, start, and enable the service
 sudo systemctl daemon-reload
 sudo systemctl start mail_sudo.service
 sudo systemctl enable mail_sudo.service
