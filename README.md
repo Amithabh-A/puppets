@@ -1,5 +1,16 @@
 # How to harden Oracle Linux OS
 
+## Changes to made in the repository after installation: 
+- [Notify SystemAdmin via mail whenever sudo is used by someone](#notify-systemadmin-via-mail-whenever-sudo-is-used-by-someone)
+
+    Here, please set up your email address and password. If you are using gmail, you will need to set up an App Password in gmail settings, get a key and paste it in place of the password. 
+
+    Also, in the file `/usr/local/bin/sudo_watcher.sh`, please set up admin email. 
+
+- [Validate UID of non-root users](#validate-uid-of-non-root-users)
+
+    In the file `/usr/local/bin/check_uid0.sh`, please set up admin email address. 
+
 ## Overview
 
 1. [Use BIOS Password](#bios-passwd)
@@ -12,6 +23,7 @@
 8. [Restrict Core Dump](#coredump)
 9. [Notify SystemAdmin via mail whenever `sudo` is used by someone](#mail)
 10. [Password Policies](#passwd_check)
+
 
 ## Detailed Instructions
 
