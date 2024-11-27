@@ -1,5 +1,9 @@
 # How to harden Oracle Linux OS
 
+## How to install
+
+- run `makescript/run_all.sh` in fresh Oracle Linux VM
+
 ## Changes to made in the repository after installation: 
 - [Notify SystemAdmin via mail whenever sudo is used by someone](#notify-systemadmin-via-mail-whenever-sudo-is-used-by-someone)
 
